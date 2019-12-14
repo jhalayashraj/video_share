@@ -1,25 +1,27 @@
-<section class="section">
-  <div class="videos">
-    <% videos.each do |video| %>
-      <div class="video-grid-item">
-        <div class="video-wrapper columns is-centered">
-          <div class="columns">
-            <iframe id="ytplayer" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/<%= video.video_id %>" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="column is-half videInformation">
-            <h3 class="video-title"><b><%= video.title %></b></h3>
-            <div class="user-data">
-              <div class="user-name"><b>Shared by: </b><%= video.user.username %></div>
+<% if videos.present? %>
+  <section class="section">
+    <div class="videos">
+      <% videos.each do |video| %>
+        <div class="video-grid-item">
+          <div class="video-wrapper columns is-centered">
+            <div class="columns">
+              <iframe id="ytplayer" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/<%= video.video_id %>" frameborder="0" allowfullscreen></iframe>
             </div>
-            <div class="video-data">
-              <div class="video-time">
-                <b>Shared: </b><%= time_ago_in_words(video.created_at) %> ago
+            <div class="column is-half videInformation">
+              <h3 class="video-title"><b><%= video.title %></b></h3>
+              <div class="user-data">
+                <div class="user-name"><b>Shared by: </b><%= video.user.username %></div>
               </div>
-              <div class="video-description"><b>Description: </b><%= truncate(video.description, length: 300) %></div>
+              <div class="video-data">
+                <div class="video-time">
+                  <b>Shared: </b><%= time_ago_in_words(video.created_at) %> ago
+                </div>
+                <div class="video-description"><b>Description: </b><%= truncate(video.description, length: 300) %></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-</section>
+      <% end %>
+    </div>
+  </section>
+<% end %>
