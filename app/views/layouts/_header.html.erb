@@ -1,0 +1,35 @@
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <%= link_to root_path, class:"navbar-item" do %>
+      <h1 class="title has-text-white">Funny Movies</h1>
+    <% end %>
+    <div class="navbar-burger burger" data-target="navbar">
+    </div>
+  </div>
+
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="field is-grouped">
+        <% if user_signed_in? %>
+          <p class="control username">
+            <%= current_user.username %>
+          </p>
+          <p class="control">
+            <%= link_to share_path, class:"button is-primary"  do %>
+            <span>Share a movie</span>
+            <% end %>
+          </p>
+          <p class="control">
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "button is-info" %>
+          </p>
+        <% else %>
+          <%= form_for(:user, :url => registration_path(:user)) do |f| %>
+            <%= f.text_field :username, placeholder: "Username" %>
+            <%= f.password_field :password, placeholder: "Password" %>
+            <%= f.submit "Login / Register", class: "button is-info" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
