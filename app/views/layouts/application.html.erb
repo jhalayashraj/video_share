@@ -21,6 +21,11 @@
         <p class="alert"><%= alert %></p>
       </div>
     <% end %>
+    <% if !!flash[:errors] %>
+      <div class="notification is-danger global-notification">
+        <p class="alert"><%= flash[:errors].join(', ') %></p>
+      </div>
+    <% end %>
 
     <%= render partial: '/layouts/header' %>
     <%= yield %>

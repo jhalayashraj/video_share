@@ -20,7 +20,7 @@ class VideosController < ApplicationController
         format.html { redirect_to root_path, notice: 'Video successfully shared.' }
         format.json { render :show, status: :created, location: @video }
       else
-        format.html { render :new }
+        format.html { redirect_to share_path, notice: @video.errors.full_messages.join(', ') }
         format.json { render json: @video.errors, status: :unprocessable_entity }
       end
     end
