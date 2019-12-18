@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Video Model
 class Video < ApplicationRecord
   ## Relationships
   belongs_to :user
